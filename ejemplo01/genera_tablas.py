@@ -27,11 +27,12 @@ class Club(Base):
     # Mapea la relación entre las clases
     # Club puede acceder a los jugadores asociados
     # por la llave foránea
+    #esto es una relacion de un jugador puede estar en varios club
     jugadores = relationship("Jugador", back_populates="club")
 
     
     def __repr__(self):
-        return "Club(%d): nombre=%s deporte=%s fundación=%d" % (
+        return "Club-%d-: nombre=%s deporte=%s fundación=%d" % (
                           self.id, 
                           self.nombre, 
                           self.deporte, 
@@ -49,7 +50,7 @@ class Jugador(Base):
     # Mapea la relación entre las clases
     # Jugador tiene una relación con Club
     club  = relationship("Club", back_populates="jugadores")
-    
+    # se relaciona con la clase Club
     def __repr__(self):
         return "Jugador: %s - dorsal:%d - posición: %s" % (
                 self.nombre, self.dorsal, self.posicion)
